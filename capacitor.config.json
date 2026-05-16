@@ -1,0 +1,16 @@
+{
+  "appId": "com.games.app",
+  "appName": "小游戏集合",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1000,
+      "backgroundColor": "#1a1a2e",
+      "showSpinner": false
+    },
+    "StatusBar": {
+      "style": "LIGHT",
+      "backgroundColor": "#1a1a2e"
+    }
+  }
+}

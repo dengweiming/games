@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小游戏集合</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="app">
+        <header id="main-header">
+            <h1>🎮 小游戏集合</h1>
+            <button id="back-btn" class="hidden" onclick="showMenu()">← 返回菜单</button>
+        </header>
+
+        <main id="menu" class="screen active">
+            <div class="game-grid">
+                <div class="game-card" onclick="showGame('2048')">
+                    <div class="game-icon icon-2048">2048</div>
+                    <h3>2048</h3>
+                    <p>合并数字，达到2048！</p>
+                </div>
+                <div class="game-card" onclick="showGame('snake')">
+                    <div class="game-icon icon-snake">🐍</div>
+                    <h3>贪吃蛇</h3>
+                    <p>经典贪吃蛇，吃食物变长</p>
+                </div>
+                <div class="game-card" onclick="showGame('sudoku')">
+                    <div class="game-icon icon-sudoku">9</div>
+                    <h3>数独</h3>
+                    <p>经典数独谜题</p>
+                </div>
+                <div class="game-card" onclick="showGame('minesweeper')">
+                    <div class="game-icon icon-minesweeper">💣</div>
+                    <h3>扫雷</h3>
+                    <p>找出所有地雷</p>
+                </div>
+                <div class="game-card" onclick="showGame('tetris')">
+                    <div class="game-icon icon-tetris">🧱</div>
+                    <h3>俄罗斯方块</h3>
+                    <p>经典消除方块游戏</p>
+                </div>
+                <div class="game-card" onclick="showGame('memory')">
+                    <div class="game-icon icon-memory">🃏</div>
+                    <h3>记忆翻牌</h3>
+                    <p>配对相同卡牌</p>
+                </div>
+            </div>
+        </main>
+
+        <div id="game-2048" class="screen game-screen">
+            <div class="game-header">
+                <div class="score-display">分数: <span id="score-2048">0</span></div>
+                <button onclick="init2048()">新游戏</button>
+            </div>
+            <div id="grid-2048" class="grid-2048"></div>
+            <p class="game-hint">使用方向键或滑动屏幕控制</p>
+        </div>
+
+        <div id="game-snake" class="screen game-screen">
+            <div class="game-header">
+                <div class="score-display">分数: <span id="score-snake">0</span></div>
+                <button onclick="initSnake()">新游戏</button>
+            </div>
+            <canvas id="snake-canvas" width="400" height="400"></canvas>
+            <div class="mobile-controls">
+                <button onclick="setSnakeDir('up')">↑</button>
+                <div>
+                    <button onclick="setSnakeDir('left')">←</button>
+                    <button onclick="setSnakeDir('down')">↓</button>
+                    <button onclick="setSnakeDir('right')">→</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="game-sudoku" class="screen game-screen">
+            <div class="game-header">
+                <div class="difficulty-selector">
+                    <button onclick="initSudoku('easy')" class="active">简单</button>
+                    <button onclick="initSudoku('medium')">中等</button>
+                    <button onclick="initSudoku('hard')">困难</button>
+                </div>
+            </div>
+            <div id="sudoku-board" class="sudoku-board"></div>
+            <div class="sudoku-controls">
+                <div class="numpad">
+                    <button onclick="sudokuInput(1)">1</button>
+                    <button onclick="sudokuInput(2)">2</button>
+                    <button onclick="sudokuInput(3)">3</button>
+                    <button onclick="sudokuInput(4)">4</button>
+                    <button onclick="sudokuInput(5)">5</button>
+                    <button onclick="sudokuInput(6)">6</button>
+                    <button onclick="sudokuInput(7)">7</button>
+                    <button onclick="sudokuInput(8)">8</button>
+                    <button onclick="sudokuInput(9)">9</button>
+                    <button onclick="sudokuClear()" class="clear-btn">清除</button>
+                </div>
+            </div>
+            <button onclick="checkSudoku()" class="check-btn">检查答案</button>
+        </div>
+
+        <div id="game-minesweeper" class="screen game-screen">
+            <div class="game-header">
+                <div class="score-display">💣 剩余: <span id="mines-left">10</span></div>
+                <button onclick="initMinesweeper()">新游戏</button>
+            </div>
+            <div id="minesweeper-board" class="minesweeper-board"></div>
+        </div>
+
+        <div id="game-tetris" class="screen game-screen">
+            <div class="game-header">
+                <div class="score-display">分数: <span id="score-tetris">0</span></div>
+                <button onclick="initTetris()">新游戏</button>
+            </div>
+            <div class="tetris-container">
+                <canvas id="tetris-canvas" width="300" height="600"></canvas>
+                <div class="tetris-side">
+                    <div>下一个:</div>
+                    <canvas id="tetris-next" width="120" height="120"></canvas>
+                    <div class="mobile-controls">
+                        <button onclick="tetrisAction('rotate')">↻</button>
+                        <div>
+                            <button onclick="tetrisAction('left')">←</button>
+                            <button onclick="tetrisAction('down')">↓</button>
+                            <button onclick="tetrisAction('right')">→</button>
+                        </div>
+                        <button onclick="tetrisAction('drop')">⤓</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="game-memory" class="screen game-screen">
+            <div class="game-header">
+                <div class="score-display">步数: <span id="score-memory">0</span></div>
+                <button onclick="initMemory()">新游戏</button>
+            </div>
+            <div id="memory-board" class="memory-board"></div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/2048.js"></script>
+    <script src="js/snake.js"></script>
+    <script src="js/sudoku.js"></script>
+    <script src="js/minesweeper.js"></script>
+    <script src="js/tetris.js"></script>
+    <script src="js/memory.js"></script>
+</body>
+</html>

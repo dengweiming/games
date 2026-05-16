@@ -1,0 +1,19 @@
+{
+  "name": "games",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "sync": "npx cap sync",
+    "open:android": "npx cap open android",
+    "build:android": "npx cap sync android"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "小游戏集合 - 2048, 贪吃蛇, 数独, 扫雷, 俄罗斯方块, 记忆翻牌",
+  "dependencies": {
+    "@capacitor/android": "^8.3.4",
+    "@capacitor/cli": "^8.3.4",
+    "@capacitor/core": "^8.3.4"
+  }
+}
